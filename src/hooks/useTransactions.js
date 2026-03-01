@@ -7,6 +7,15 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/features/auth/AuthContext'
 import { todayString, getPeriodDates } from '@/lib/utils'
 
+const TRANSACTION_SELECT = `
+  *,
+  wallet:wallets!transactions_wallet_id_fkey(id, name, color, type),
+  from_wallet:wallets!transactions_from_wallet_id_fkey(id, name, color),
+  to_wallet:wallets!transactions_to_wallet_id_fkey(id, name, color),
+  group:budget_groups!transactions_group_id_fkey(id, name, color),
+  category:budget_categories!transactions_category_id_fkey(id, name, icon)
+`
+
 export function useTransactions({ limit = null, periodOnly = false, settings = null } = {}) {
   const { user } = useAuth()
   const [transactions, setTransactions] = useState([])
@@ -22,14 +31,7 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
     try {
       let query = supabase
         .from('transactions')
-        .select(`
-          *,
-          wallet:wallets!transactions_wallet_id_fkey(id, name, color, type),
-          from_wallet:wallets!transactions_from_wallet_id_fkey(id, name, color),
-          to_wallet:wallets!transactions_to_wallet_id_fkey(id, name, color),
-          group:budget_groups(id, name, color),
-          category:budget_categories(id, name, icon)
-        `)
+        .select(TRANSACTION_SELECT)
         .eq('user_id', user.id)
         .order('date', { ascending: false })
         .order('created_at', { ascending: false })
@@ -75,14 +77,7 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
     const { data, error } = await supabase
       .from('transactions')
       .insert({ ...txData, user_id: user.id })
-      .select(`
-        *,
-        wallet:wallets!transactions_wallet_id_fkey(id, name, color, type),
-        from_wallet:wallets!transactions_from_wallet_id_fkey(id, name, color),
-        to_wallet:wallets!transactions_to_wallet_id_fkey(id, name, color),
-        group:budget_groups(id, name, color),
-        category:budget_categories(id, name, icon)
-      `)
+      .select(TRANSACTION_SELECT)
       .single()
 
     if (!error) {
@@ -94,7 +89,6 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
           p_wallet_id: txData.wallet_id,
           p_amount: txData.amount
         }).catch(() => {
-          // Fallback: manual update
           supabase.from('wallets')
             .select('balance')
             .eq('id', txData.wallet_id)
@@ -116,7 +110,6 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
               .eq('id', txData.wallet_id)
           })
       } else if (txData.type === 'transfer') {
-        // Deduct from source, add to destination
         const [fromW, toW] = await Promise.all([
           supabase.from('wallets').select('balance').eq('id', txData.from_wallet_id).single(),
           supabase.from('wallets').select('balance').eq('id', txData.to_wallet_id).single(),
