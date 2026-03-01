@@ -24,7 +24,7 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
         .from('transactions')
         .select(`
           *,
-          wallet:wallets(id, name, color, type),
+          wallet:wallets!transactions_wallet_id_fkey(id, name, color, type),
           from_wallet:wallets!transactions_from_wallet_id_fkey(id, name, color),
           to_wallet:wallets!transactions_to_wallet_id_fkey(id, name, color),
           group:budget_groups(id, name, color),
@@ -77,7 +77,7 @@ export function useTransactions({ limit = null, periodOnly = false, settings = n
       .insert({ ...txData, user_id: user.id })
       .select(`
         *,
-        wallet:wallets(id, name, color, type),
+        wallet:wallets!transactions_wallet_id_fkey(id, name, color, type),
         from_wallet:wallets!transactions_from_wallet_id_fkey(id, name, color),
         to_wallet:wallets!transactions_to_wallet_id_fkey(id, name, color),
         group:budget_groups(id, name, color),
