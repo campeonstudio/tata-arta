@@ -1,4 +1,7 @@
-// Default budget allocations (user can modify)
+// ============================================================
+// TATA ARTA — Constants
+// ============================================================
+
 export const DEFAULT_BUDGET_GROUPS = [
   {
     id: 'needs',
@@ -7,10 +10,11 @@ export const DEFAULT_BUDGET_GROUPS = [
     percentage: 50,
     color: '#8B7355',
     categories: [
-      { id: 'housing', label: 'Housing', subcategories: ['Rent', 'Mortgage', 'Utilities', 'Internet'] },
-      { id: 'food', label: 'Food & Groceries', subcategories: ['Groceries', 'Work Meals'] },
-      { id: 'transport', label: 'Transportation', subcategories: ['Fuel', 'Public Transit', 'Vehicle Maintenance'] },
-      { id: 'health', label: 'Health', subcategories: ['Insurance', 'Medicine', 'Doctor Visits'] },
+      { id: 'housing', label: 'Housing', icon: '🏠' },
+      { id: 'food', label: 'Food & Groceries', icon: '🛒' },
+      { id: 'transport', label: 'Transportation', icon: '🚌' },
+      { id: 'health', label: 'Health', icon: '💊' },
+      { id: 'utilities', label: 'Utilities', icon: '💡' },
     ],
   },
   {
@@ -20,10 +24,11 @@ export const DEFAULT_BUDGET_GROUPS = [
     percentage: 30,
     color: '#6B8CAE',
     categories: [
-      { id: 'dining', label: 'Dining Out', subcategories: ['Restaurants', 'Coffee', 'Delivery'] },
-      { id: 'entertainment', label: 'Entertainment', subcategories: ['Streaming', 'Movies', 'Games', 'Events'] },
-      { id: 'shopping', label: 'Shopping', subcategories: ['Clothes', 'Electronics', 'Home Decor'] },
-      { id: 'hobbies', label: 'Hobbies', subcategories: [] },
+      { id: 'dining', label: 'Dining Out', icon: '🍜' },
+      { id: 'entertainment', label: 'Entertainment', icon: '🎬' },
+      { id: 'shopping', label: 'Shopping', icon: '🛍️' },
+      { id: 'hobbies', label: 'Hobbies', icon: '🎸' },
+      { id: 'subscriptions', label: 'Subscriptions', icon: '📱' },
     ],
   },
   {
@@ -33,10 +38,10 @@ export const DEFAULT_BUDGET_GROUPS = [
     percentage: 20,
     color: '#7A9E7E',
     categories: [
-      { id: 'emergency', label: 'Emergency Fund', subcategories: [] },
-      { id: 'investment', label: 'Investments', subcategories: ['Stocks', 'Mutual Funds', 'Crypto'] },
-      { id: 'debt', label: 'Debt Payments', subcategories: ['Credit Card', 'Student Loan', 'Personal Loan'] },
-      { id: 'goals', label: 'Goals', subcategories: [] },
+      { id: 'emergency', label: 'Emergency Fund', icon: '🛡️' },
+      { id: 'investment', label: 'Investments', icon: '📈' },
+      { id: 'debt', label: 'Debt Payments', icon: '💳' },
+      { id: 'goals', label: 'Goals', icon: '🎯' },
     ],
   },
 ]
@@ -53,4 +58,34 @@ export const CURRENCY_OPTIONS = [
   { value: 'USD', label: 'USD — US Dollar', symbol: '$' },
   { value: 'EUR', label: 'EUR — Euro', symbol: '€' },
   { value: 'SGD', label: 'SGD — Singapore Dollar', symbol: 'S$' },
+]
+
+export const WALLET_TYPES = [
+  { value: 'cash', label: 'Cash', icon: '💵' },
+  { value: 'bank', label: 'Bank Account', icon: '🏦' },
+  { value: 'ewallet', label: 'E-Wallet', icon: '📲' },
+  { value: 'credit_card', label: 'Credit Card', icon: '💳' },
+]
+
+export const WALLET_COLORS = [
+  '#8B7355', '#6B8CAE', '#7A9E7E', '#B07A6E',
+  '#8E7AB5', '#C4956A', '#5B8FA8', '#9E7A9E',
+]
+
+export const TRANSACTION_TYPES = [
+  { value: 'expense', label: 'Expense', icon: '↑' },
+  { value: 'income', label: 'Income', icon: '↓' },
+  { value: 'transfer', label: 'Transfer', icon: '⇄' },
+  { value: 'savings', label: 'Savings', icon: '🏦' },
+]
+
+export const GOAL_PRESETS = [
+  { id: 'emergency', label: 'Emergency Fund', icon: '🛡️' },
+  { id: 'travel', label: 'Travel', icon: '✈️' },
+  { id: 'house', label: 'House / Property', icon: '🏠' },
+  { id: 'car', label: 'Vehicle', icon: '🚗' },
+  { id: 'education', label: 'Education', icon: '🎓' },
+  { id: 'retirement', label: 'Retirement', icon: '🌅' },
+  { id: 'gadget', label: 'Gadget', icon: '💻' },
+  { id: 'business', label: 'Business', icon: '💼' },
 ]

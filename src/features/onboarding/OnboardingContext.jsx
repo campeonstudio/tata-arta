@@ -4,14 +4,11 @@ import { DEFAULT_BUDGET_GROUPS } from '@/lib/constants'
 const OnboardingContext = createContext(null)
 
 const initialData = {
-  // Step 1: Account (already done via auth)
-  // Step 2: Income
   income: '',
   currency: 'IDR',
   cycle: 'monthly',
-  // Step 3: Budget allocation
   budgetGroups: DEFAULT_BUDGET_GROUPS,
-  // Step 4: Goals
+  wallets: [],  // NEW: wallet setup step
   goals: [],
 }
 
@@ -19,7 +16,7 @@ export function OnboardingProvider({ children }) {
   const [step, setStep] = useState(1)
   const [data, setData] = useState(initialData)
 
-  const totalSteps = 4
+  const totalSteps = 5  // income, budget, wallets, goals, done
 
   const updateData = (partial) => {
     setData(prev => ({ ...prev, ...partial }))
