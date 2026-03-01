@@ -1,0 +1,163 @@
+/* ============================================
+   BUDGETLY — Global Styles
+   Modern Skeuomorphism Design System
+   ============================================ */
+
+:root {
+  /* Base palette */
+  --cream-100: #FAF7F2;
+  --cream-200: #F2EDE4;
+  --cream-300: #E8E0D4;
+  --cream-400: #D4C9B8;
+
+  --stone-500: #9A8E7E;
+  --stone-600: #7A7066;
+  --stone-700: #5C544A;
+  --stone-800: #3D3830;
+  --stone-900: #1E1A14;
+
+  /* Group accent colors */
+  --needs-color: #8B7355;
+  --wants-color: #6B8CAE;
+  --savings-color: #7A9E7E;
+
+  /* Semantic */
+  --text-primary: var(--stone-900);
+  --text-secondary: var(--stone-600);
+  --text-muted: var(--stone-500);
+  --bg-base: var(--cream-100);
+  --bg-surface: #FFFFFF;
+  --bg-inset: var(--cream-200);
+  --border-color: var(--cream-300);
+
+  /* Skeuomorphic shadows */
+  --shadow-raised: 
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 -1px 0 rgba(0,0,0,0.04) inset,
+    0 2px 4px rgba(0,0,0,0.06),
+    0 8px 24px rgba(0,0,0,0.08);
+
+  --shadow-card:
+    0 1px 0 rgba(255,255,255,0.8) inset,
+    0 2px 8px rgba(0,0,0,0.06),
+    0 16px 48px rgba(0,0,0,0.07);
+
+  --shadow-pressed:
+    0 1px 3px rgba(0,0,0,0.12) inset,
+    0 1px 0 rgba(255,255,255,0.5);
+
+  --shadow-button:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 2px 4px rgba(0,0,0,0.1),
+    0 4px 12px rgba(0,0,0,0.08);
+
+  --shadow-button-hover:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 4px 8px rgba(0,0,0,0.12),
+    0 8px 20px rgba(0,0,0,0.1);
+
+  --shadow-input:
+    0 2px 4px rgba(0,0,0,0.06) inset,
+    0 1px 0 rgba(255,255,255,0.8);
+
+  /* Typography */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Subtle background texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(ellipse at 20% 0%, rgba(139,115,85,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(107,140,174,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+p { color: var(--text-secondary); }
+
+a {
+  color: var(--needs-color);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+a:hover { opacity: 0.75; }
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-200); }
+::-webkit-scrollbar-thumb { 
+  background: var(--cream-400); 
+  border-radius: var(--radius-full);
+}

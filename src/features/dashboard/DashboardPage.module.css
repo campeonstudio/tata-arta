@@ -1,0 +1,22 @@
+.page {
+  min-height: 100vh;
+  padding: var(--space-6);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-12);
+  gap: var(--space-3);
+}
+
+.placeholder h2 {
+  font-size: 1.5rem;
+}
